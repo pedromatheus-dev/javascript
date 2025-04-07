@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratando dados</title>
+    <style>
+        body{
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            background-color: lightcyan;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var nome = window.prompt("Qual o seu nome?");
+        var dinheiro = Number(window.prompt("Quanto você tem na carteira?"));
+        document.write(`Olá ${nome}, seu nome tem ${nome.length} letras!<br>`)
+        document.write(`Seu nome em maiúsculo é ${nome.toUpperCase()}<br>`)
+        document.write(`Seu nome em minúsculo é ${nome.toLowerCase()}<br>`)
+        document.write(`Você tem ${dinheiro.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} na carteira!<br>`)
+    </script>
+</body>
+</html>
