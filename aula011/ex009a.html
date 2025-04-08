@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onde você mora?</title>
+</head>
+<body>
+    <h1>Onde você mora?</h1>
+    <label for="ipais">Digite o País onde você mora:</label>
+    <input type="text" name="pais" id="ipais" autocomplete="country-name" maxlength="30" required>
+    <input type="button" value="Verificar" onclick="verificar()">
+    <p id="nacionalidade"></p>
+    <script>
+
+        function verificar(){
+            var pais = document.getElementById('ipais').value
+            var nacionalidade = document.getElementById('nacionalidade')
+            if (pais == "Brasil"){
+                nacionalidade.innerHTML = "Você é <strong>brasileiro!</strong>"
+            }else{
+                nacionalidade.innerHTML = "Você é <strong>estrangeiro!</strong>"
+            }
+        }
+    </script>
+</body>
+</html>
