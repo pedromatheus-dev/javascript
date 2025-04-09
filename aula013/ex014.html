@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do dia</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            width: 100vw;
+        }
+
+        header{
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        main{
+            padding: 20px 20px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            background-color: white;
+            width: 50vw;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.208);
+            margin-bottom: 20px;
+        }
+
+        p{
+            margin-bottom: 20px;
+        }
+
+        #imagem{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.342);
+        }
+
+        footer p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hora do Dia</h1>
+    </header>
+    <main>
+        <p>Agora são <span id="horas"></span> horas.</p>
+        <div id="imagem">
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Curso em vídeo</p>
+    </footer>
+
+    <script>
+        var agora = new Date()
+
+        var body = document.body
+        var horas = document.querySelector("span#horas")
+        var imagem = document.getElementById("imagem")
+
+        horas.innerText = agora.getHours()
+        if (horas.innerText < 12){
+            dia()
+        }else if (horas.innerText < 18){
+            tarde()
+        }else{
+            noite()
+        }
+
+        function dia(){
+            imagem.style.background = "url(./images/dia.jpg) center center/cover no-repeat"
+            body.style.backgroundColor = "#6e95d5"
+            
+        }
+
+        function tarde(){
+            imagem.style.background = "url(./images/tarde.jpg) center center/cover no-repeat"
+            body.style.backgroundColor = "#a65900"
+        }
+
+        function noite(){
+            imagem.style.background = "url(./images/noite.jpg) center center/cover no-repeat"
+            body.style.backgroundColor = "#2c2c2c"
+        }
+    </script>
+</body>
+</html>
