@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idade</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <style>
+
+        #ano-nasc{
+            padding: 10px;
+        }
+
+        #iano{
+            width: 100px;
+        }
+        
+        fieldset{
+            margin: 5px 0px;
+            padding: 5px;
+        }
+        
+        input[type="button"]{
+            margin: 5px 0px 10px 0px;
+            padding: 3px;
+        }
+
+        #resultado{
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+    <main>
+        <div id="ano-nasc">
+            <label for="iano">Ano de Nascimento:</label>
+            <input type="number" name="ano" id="iano" min="1910" max="2025">
+        </div>
+
+        <fieldset>
+            <legend>Sexo</legend>
+            <input type="radio" name="sexo" id="isexoM">
+            <label for="isexoM">Masculino</label>
+            <input type="radio" name="sexo" id="isexoF">
+            <label for="isexoF">Feminino</label>
+        </fieldset>
+        <input type="button" value="Verificar" onclick="verificar()">
+
+        <div id="resultado">
+            <p>Detectamos <span id="txtsexo"></span> com <span id="txtidade"></span> anos.</p>
+            <div id="imagem"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Curso em vídeo</p>
+    </footer>
+
+    <script>
+        function verificar(){
+            var anoAtual = new Date().getFullYear()
+
+            var sexo = ""
+            var anoNasc = Number(document.getElementById('iano').value)
+            var txtIdade = document.getElementById('txtidade')
+            var txtSexo = document.getElementById('txtsexo')
+            var sexoM = document.getElementById('isexoM')
+            var sexoF = document.getElementById('isexoF')
+            var imagem = document.getElementById("imagem")
+            if (anoNasc == ""){
+                preencher("Ano de Nascimento")
+            }
+
+            if (anoNasc < 1910 || anoNasc > 2025){
+                window.alert("Preencha as informações de Ano corretamente")
+            } else{
+                if(sexoM.checked == false && sexoF.checked == false){
+                    preencher("Sexo")
+                }else{
+                    var idade = anoAtual - anoNasc
+                    txtIdade.innerText = idade
+                    if (sexoM.checked == true){
+                    txtSexo.innerText = "Homem"
+                    sexo = "M"
+                    } else if(sexoF.checked == true){
+                        txtSexo.innerText = "Mulher"
+                        sexo = "F"
+                    }else{
+                        preencher("Sexo")
+                    }
+                    if (idade < 12){
+                        imagem.style.background = `url(./images/crianca${sexo}.jpg) right top/cover no-repeat`
+                    }else if(idade < 18){
+                        imagem.style.background = `url(./images/pre-adolescente${sexo}.jpg) center top/cover no-repeat`
+                    }else if(idade < 30){
+                        imagem.style.background = `url(./images/adolescente${sexo}.jpg) center top/cover no-repeat`
+                    }else if(idade < 60){
+                        imagem.style.background = `url(./images/adulto${sexo}.jpg) center top/cover no-repeat`
+                    }else{
+                        imagem.style.background = `url(./images/idoso${sexo}.jpg) center top/cover no-repeat`
+                    }
+                }
+            }
+
+            
+
+            
+
+            function preencher(campo){
+                window.alert(`Preencha as informações do campo ${campo}`)
+            }
+        }
+    </script>
+</body>
+</html>
