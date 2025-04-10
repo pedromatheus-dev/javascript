@@ -54,7 +54,6 @@
 
         <div id="resultado">
             <p>Detectamos <span id="txtsexo"></span> com <span id="txtidade"></span> anos.</p>
-            <div id="imagem"></div>
         </div>
     </main>
 
@@ -73,6 +72,9 @@
             var sexoM = document.getElementById('isexoM')
             var sexoF = document.getElementById('isexoF')
             var imagem = document.getElementById("imagem")
+            var div = document.createElement("div")
+            var res = document.getElementById("resultado")
+            div.setAttribute("id", "imagem")
             if (anoNasc == ""){
                 preencher("Ano de Nascimento")
             }
@@ -95,17 +97,27 @@
                         preencher("Sexo")
                     }
                     if (idade < 12){
-                        imagem.style.background = `url(./images/crianca${sexo}.jpg) right top/cover no-repeat`
+                        div.setAttribute("style", `background: url(./images/crianca${sexo}.jpg) right top/cover no-repeat`)
+                        // imagem.style.background = `url(./images/crianca${sexo}.jpg) right top/cover no-repeat`
                     }else if(idade < 18){
-                        imagem.style.background = `url(./images/pre-adolescente${sexo}.jpg) center top/cover no-repeat`
+                        div.setAttribute("style", `background: url(./images/pre-adolescente${sexo}.jpg) right top/cover no-repeat`)
+                        // imagem.style.background = `url(./images/pre-adolescente${sexo}.jpg) center top/cover no-repeat`
                     }else if(idade < 30){
-                        imagem.style.background = `url(./images/adolescente${sexo}.jpg) center top/cover no-repeat`
+                        div.setAttribute("style", `background: url(./images/adolescente${sexo}.jpg) right top/cover no-repeat`)
+                        // imagem.style.background = `url(./images/adolescente${sexo}.jpg) center top/cover no-repeat`
                     }else if(idade < 60){
-                        imagem.style.background = `url(./images/adulto${sexo}.jpg) center top/cover no-repeat`
+                        div.setAttribute("style", `background: url(./images/adulto${sexo}.jpg) right top/cover no-repeat`)
+                        // imagem.style.background = `url(./images/adulto${sexo}.jpg) center top/cover no-repeat`
                     }else{
-                        imagem.style.background = `url(./images/idoso${sexo}.jpg) center top/cover no-repeat`
+                        div.setAttribute("style", `background: url(./images/idoso${sexo}.jpg) right top/cover no-repeat`)
+                        // imagem.style.background = `url(./images/idoso${sexo}.jpg) center top/cover no-repeat`
                     }
                 }
+            }
+
+            console.log(res.lastChild.nodeName)
+            if (res.lastChild.nodeName != "DIV"){
+                res.appendChild(div)
             }
 
             
