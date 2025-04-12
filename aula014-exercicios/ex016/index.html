@@ -70,19 +70,23 @@
                     window.alert("Passo 0 inválido, considerando passo = 1")
                     passo = 1
                 }
-                for (var i = inicio; i <= fim; i += passo) {
-                    if (i == inicio) {
-                        p.innerText = ""
+                if (inicio < fim) {
+                    for (var i = inicio; i <= fim; i += passo) {
+                        if (i == inicio) {
+                            p.innerText = ""
+                        }
+                        p.innerHTML += `${i} &#x1F449;`
                     }
-                    p.innerHTML += `${i} &#x1F449;`
-                    if (fim < i + passo) {
-                        p.innerHTML += `&#x1F3C1`
+                } else {
+                    for (var i = inicio; i >= fim; i -= passo) {
+                        if (i == inicio) {
+                            p.innerText = ""
+                        }
+                        p.innerHTML += `${i} &#x1F449;`
                     }
-
                 }
+                p.innerHTML += `&#x1F3C1`
             }
-
-
         }
     </script>
 </body>
