@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos contar</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        body {
+            background-color: rgb(58, 58, 255);
+        }
+
+        main {
+            align-items: flex-start;
+        }
+
+        main div {
+            margin: 5px 0;
+        }
+
+        input[type="button"] {
+            margin: 5px 0;
+            padding: 3px;
+        }
+
+        #res {
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Vamos contar</h1>
+    </header>
+    <main>
+        <div>
+            <label for="iinicio">Início:</label>
+            <input type="number" name="inicio" id="iinicio">
+        </div>
+        <div>
+            <label for="ifim">Fim:</label>
+            <input type="number" name="fim" id="ifim">
+        </div>
+        <div>
+            <label for="ipasso">Passo:</label>
+            <input type="number" name="passo" id="ipasso">
+        </div>
+        <input type="button" value="Contar" onclick="contar()">
+        <p id="res">Preparando a contagem</p>
+    </main>
+
+    <footer>
+        <p>&copy; Curso em vídeo</p>
+    </footer>
+
+    <script>
+        function contar() {
+            var inicio = Number(document.getElementById("iinicio").value)
+            var fim = Number(document.getElementById("ifim").value)
+            var passo = Number(document.getElementById("ipasso").value)
+            var p = document.getElementById("res")
+
+            if (inicio == 0 || fim == 0) {
+                p.innerText = "Impossível contar"
+                console.log(inicio, fim, passo)
+            } else {
+                if (passo === 0) {
+                    window.alert("Passo 0 inválido, considerando passo = 1")
+                    passo = 1
+                }
+                for (var i = inicio; i <= fim; i += passo) {
+                    if (i == inicio) {
+                        p.innerText = ""
+                    }
+                    p.innerHTML += `${i} &#x1F449;`
+                    if (fim < i + passo) {
+                        p.innerHTML += `&#x1F3C1`
+                    }
+
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
