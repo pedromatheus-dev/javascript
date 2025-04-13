@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Números</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        input[type="button"]{
+            padding: 3px;
+            margin: 5px 0;
+        }
+
+        main{
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analisador de Números</h1>
+    </header>
+    <main>
+       <div>
+           <label for="inumero">Número:</label>
+           <input type="number" name="numero" id="inumero" placeholder="1-100" min="1" max="100">
+       </div>
+       <input type="button" value="Adicionar" onclick="adicionar()">
+       <select name="lista" id="ilista" size="10">
+        <option value="Digite um número">Digite um número</option>
+       </select>
+       <input type="button" value="Finalizar" onclick="finalizar()">
+       <div id="res"></div>
+    </main>
+
+    <footer>
+        <p>&copy; Curso em vídeo</p>
+    </footer>
+
+    <script>
+        var select = document.getElementById('ilista')
+        var lista = []
+        var cont = 0
+        let res = document.getElementById("res")
+        function adicionar(){
+            var n = Number(document.getElementById('inumero').value)
+            if (n >= 1 && n <= 100){
+                if (!inLista(n, lista)){
+                    if (cont == 0){
+                        select.innerHTML = ""
+                        cont++
+                    }
+                    res.innerHTML = ""
+                    lista.push(n)
+                    var opt = document.createElement("option")
+                    opt.text = `Valor ${n} adicionado`
+                    opt.value = `valor${n}`
+                    select.appendChild(opt)
+                }else{
+                    window.alert(`Número ${n} já adicionado. Digite outro número`)
+                }
+            }else{
+                window.alert("Preencha o input corretamente")
+            }
+        }
+
+        function finalizar(){
+            if (select.innerText == "Digite um número"){
+                window.alert("Preencha o input com um número")
+            }else{
+
+                let total = lista.length
+                let maior = maiorNumero(lista)
+                let menor = menorNumero(lista)
+                let soma = somaValores(lista)
+                let media = mediaValores(lista)
+                res.innerHTML = `Ao todo, temos ${total} números cadastrados. <br>
+                                O maior valor informado foi ${maior}. <br>
+                                O menor valor informado foi ${menor}. <br>
+                                Somando todos os valores, temos ${soma}. <br>
+                                A média dos valores digitados é ${media}. <br>`
+            }
+        }
+
+        function inLista(n, lista){
+            if (lista.indexOf(n) != -1){
+                return true
+            }else{
+                return false
+            }
+        }
+
+        function maiorNumero(lista){
+            var M = lista[0]
+            for (let c = 1; c < lista.length; c++){
+                if (lista[c] > M){
+                    M = lista[c]
+                    console.log(lista[c])
+                }
+            }
+            return M
+        }
+
+        function menorNumero(lista){
+            var m = lista[0]
+            for (let c = 1; c < lista.length; c++){
+                if (lista[c] < m){
+                    m = lista[c]
+                }
+            }
+            return m
+        }
+
+        function somaValores(lista){
+            let soma = 0
+            for (pos in lista){
+                soma += lista[pos]
+            }
+
+            return soma
+        }
+
+        function mediaValores(lista){
+           let media = somaValores(lista) / lista.length
+
+            return media
+        }
+    </script>
+
+    
+</body>
+</html>
