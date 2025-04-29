@@ -46,6 +46,13 @@ section > div{
     color: white;
 }
 
+div#botoes{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
 input{
     background-color: darkblue;
     color: white;
@@ -53,6 +60,6 @@ input{
     outline: none;
     border-radius: 5px;
     padding: 7px 10px;
-    margin: 0 5px;
+    margin: 5px;
     cursor: pointer;
 }

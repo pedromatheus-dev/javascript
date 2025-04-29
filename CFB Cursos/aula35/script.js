@@ -1,6 +1,7 @@
 let primeiroDiv = document.getElementById('primeiro')
 let segundaDiv = document.getElementById('segundo')
-let botao = document.querySelector("input[type='submit']")
+let botaoCopiar = document.querySelector("#btn-copiar")
+let botaoVoltar = document.querySelector("#btn-voltar")
 let cursos = [...document.querySelectorAll(".curso")]
 
 
@@ -18,4 +19,14 @@ let copiar = () => {
     })
 }
 
-botao.addEventListener('click', copiar)
+let voltar = () => {
+    let cursosSelecionados = [...document.querySelectorAll('.curso')]
+    cursosSelecionados.map((item) => {
+        !(item.classList.contains('destaque')) ? primeiroDiv.appendChild(item) : ''
+    })
+
+}
+
+botaoCopiar.addEventListener('click', copiar)
+botaoVoltar.addEventListener('click', voltar)
+
