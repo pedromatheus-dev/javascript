@@ -1,3 +1,6 @@
+// Exercício 1 - Copiar cursos selecionados
+// Exercício 2 - Voltar cursos selecionados
+
 let primeiroDiv = document.getElementById('primeiro')
 let segundaDiv = document.getElementById('segundo')
 let botaoCopiar = document.querySelector("#btn-copiar")

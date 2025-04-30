@@ -1,3 +1,5 @@
+// Adicionando classes com JS
+
 const c1 = [...document.getElementsByClassName('c1')]
 const c2 = [...document.getElementsByClassName('c2')]
 const colecao = [...document.getElementsByClassName('curso')]

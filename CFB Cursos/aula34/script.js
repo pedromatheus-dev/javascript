@@ -1,3 +1,5 @@
+// Exemplo de evento de clique em elementos da DOM
+
 const colecao = [...document.getElementsByClassName('curso')]
 
 colecao.map((el) => {
