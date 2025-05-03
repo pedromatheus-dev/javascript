@@ -17,23 +17,35 @@ const inputVazio = (input) => {
         return false
     }
 }
-
-cursos.map((curso, i) => {
+const criarNovoCurso = (curso, i) => {
     const div = document.createElement("div")
-    div.setAttribute("id", `c${i + 1}`)
+    div.setAttribute("id", `c${i}`)
     div.setAttribute("class", "curso")
     div.innerHTML = curso
     
     const radio_button = document.createElement("input")
     radio_button.setAttribute("type", "radio")
     radio_button.setAttribute("name", "curso")
-    radio_button.setAttribute("id", `c${i + 1}`)
+    radio_button.setAttribute("id", `c${i}`)
     
     radio_button.setAttribute("value", curso)
-    
-    
-    primeiraDiv.appendChild(div)
     div.appendChild(radio_button)
+    return div
+}
+
+const corrigirId = (i) => {
+    for (elem of primeiraDiv.children){
+        let i_elem = Number(elem.id.substring(1))
+        if (i_elem >= i && !(elem == primeiraDiv.lastElementChild)){
+            elem.nextElementSibling.id = `c${i_elem + 1}`
+        }
+        
+    }
+}
+
+cursos.map((curso, i) => {
+    let novoCurso = criarNovoCurso(curso, i + 1)
+    primeiraDiv.appendChild(novoCurso)
 })
 
 btn_adicionar_antes.addEventListener("click", (evt) => {
@@ -42,31 +54,11 @@ btn_adicionar_antes.addEventListener("click", (evt) => {
     const i = cursoSelecionado.id.substring(1)
 
     if (!inputVazio(cursoParaAdicionar)){
-
-    
-        const div = document.createElement("div")
-        div.setAttribute("id", `c${i}`)
-        div.setAttribute("class", "curso")
-        div.innerHTML = cursoParaAdicionar.value
-    
-        const radio_button = document.createElement("input")
-        radio_button.setAttribute("type", "radio")
-        radio_button.setAttribute("name", "curso")
-        radio_button.setAttribute("id", `c${i}`)
-        radio_button.setAttribute("value", cursoParaAdicionar.value)
-    
-        // primeiraDiv.appendChild(div)
+        const div = criarNovoCurso(cursoParaAdicionar.value, i)
         cursoSelecionado.insertAdjacentElement("beforebegin", div)
-        div.appendChild(radio_button)
     }
 
-    for (elem of primeiraDiv.children){
-        let i_elem = Number(elem.id.substring(1))
-        if (i_elem >= i && !(elem == primeiraDiv.lastElementChild)){
-            elem.nextElementSibling.id = `c${i_elem + 1}`
-        }
-        
-    }
+    corrigirId(i)
 })
 
 btn_adicionar_depois.addEventListener("click", (evt) => {
@@ -75,31 +67,12 @@ btn_adicionar_depois.addEventListener("click", (evt) => {
     const i = cursoSelecionado.id.substring(1)
 
     if (!inputVazio(cursoParaAdicionar)){
-
-    
-        const div = document.createElement("div")
-        div.setAttribute("id", `c${i}`)
-        div.setAttribute("class", "curso")
-        div.innerHTML = cursoParaAdicionar.value
-    
-        const radio_button = document.createElement("input")
-        radio_button.setAttribute("type", "radio")
-        radio_button.setAttribute("name", "curso")
-        radio_button.setAttribute("id", `c${i}`)
-        radio_button.setAttribute("value", cursoParaAdicionar.value)
-    
-        // primeiraDiv.appendChild(div)
+        const div = criarNovoCurso(cursoParaAdicionar.value, i)
         cursoSelecionado.insertAdjacentElement("afterend", div)
-        div.appendChild(radio_button)
     }
 
-    for (elem of primeiraDiv.children){
-        let i_elem = Number(elem.id.substring(1))
-        if (i_elem >= i && !(elem == primeiraDiv.lastElementChild)){
-            elem.nextElementSibling.id = `c${i_elem + 1}`
-        }
-        
-    }
+    corrigirId(i)
+    
 })
 
 btn_remover.addEventListener("click", (evt) => {
@@ -108,13 +81,6 @@ btn_remover.addEventListener("click", (evt) => {
 })
 
 btn_cursoSelecionado.addEventListener("click", (evt) => {
-    // const todosCursos = [...document.querySelectorAll("input[type=radio]")]
-    // let curso = todosCursos.filter((cursoMarcado) => {
-    //     if (cursoMarcado.checked){
-    //         return cursoMarcado
-    //     }
-    // })
-
     const cursoSelecionado = document.querySelector('input[name="curso"]:checked')
         alert(`Curso selecionado: ${cursoSelecionado.value}`)
 
